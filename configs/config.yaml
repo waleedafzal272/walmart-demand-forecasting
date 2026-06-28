@@ -1,0 +1,56 @@
+project:
+  name: "Walmart Demand Forecasting"
+  version: "1.0.0"
+  author: "Waleed"
+  random_seed: 42
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  target_column: "Weekly_Sales"
+  date_column: "Date"
+  store_column: "Store"
+  dept_column: "Dept"
+  test_size: 0.2
+  date_format: "%Y-%m-%d"
+
+forecasting:
+  horizon: 12
+  frequency: "W"
+  cv_folds: 5
+  min_train_size: 52
+
+features:
+  lags: [1, 2, 3, 4, 7, 8, 12, 13, 26, 52]
+  rolling_windows: [4, 8, 12, 26, 52]
+  rolling_stats: ["mean", "std", "min", "max"]
+
+models:
+  baseline:
+    - naive
+    - simple_moving_average
+    - exponential_smoothing
+  classical:
+    - arima
+    - sarima
+    - prophet
+    - holt_winters
+  ml:
+    - lightgbm
+    - xgboost
+    - catboost
+    - random_forest
+
+evaluation:
+  primary_metric: "RMSE"
+  metrics:
+    - "MAE"
+    - "RMSE"
+    - "MAPE"
+    - "SMAPE"
+    - "R2"
+
+logging:
+  log_dir: "logs"
+  log_level: "INFO"
+  log_file: "logs/pipeline.log"

@@ -1,0 +1,31 @@
+# Python cache files — not needed
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment — too large to upload
+venv/
+env/
+
+# Large data files — too large for GitHub
+data/raw/*.csv
+data/raw/*.zip
+
+# Processed data — can be regenerated
+data/processed/*.parquet
+
+# Trained model files — can be regenerated
+models/saved/*.pkl
+models/saved/*.joblib
+
+# Jupyter checkpoint files — not needed
+.ipynb_checkpoints/
+
+# Log files
+logs/*.log
+
+# MLflow runs
+mlruns/
+
+# Environment variables
+.env
